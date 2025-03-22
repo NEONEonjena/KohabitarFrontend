@@ -1,0 +1,101 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Propiedades</h2>
+  <button class="btn btn-primary mb-3" (click)="mostrarModal = true; editMode = false; propiedadForm.reset()">+ Agregar Propiedad</button>
+  <input type="text" class="form-control mb-3" placeholder="Buscar...">
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Dirección</th>
+        <th>Propietario</th>
+        <th>Tipo</th>
+        <th>Estado</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let propiedad of propiedades">
+        <td>
+          <strong>{{ propiedad.address }}</strong><br>
+          <span *ngIf="propiedad.block">Bloque: {{ propiedad.block }}</span>
+        </td>
+        <td>{{ propiedad.owner || 'Sin asignar' }}</td>
+        <td>{{ propiedad.type }}</td>
+        <td>{{ propiedad.status }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="editarPropiedad(propiedad)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="eliminarPropiedad(propiedad.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal para Agregar/Editar Propiedad -->
+<div *ngIf="mostrarModal" class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ editMode ? 'Editar Propiedad' : 'Agregar Propiedad' }}</h5>
+        <button type="button" class="btn-close" (click)="cerrarModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="propiedadForm">
+          <div class="mb-3">
+            <label>Numero de casa *</label>
+            <input type="text" class="form-control" formControlName="address">
+          </div>
+          <div class="mb-3">
+            <label>Bloque</label>
+            <input type="text" class="form-control" formControlName="block">
+          </div>
+          <div class="mb-3">
+            <label>Área (m²) *</label>
+            <input type="number" class="form-control" formControlName="area" min="1">
+          </div>
+          <div class="mb-3">
+            <label>Tipo *</label>
+            <select class="form-control" formControlName="type">
+              <option value="" disabled selected>Seleccione</option>
+              <option value="Casa">Casa</option>
+              <option value="Local Comercial">Local Comercial</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Estado *</label>
+            <select class="form-control" formControlName="status">
+              <option value="Vacante">Vacante</option>
+              <option value="Ocupado">Ocupado</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Propietario</label>
+            <input type="text" class="form-control" formControlName="owner">
+          </div>
+          <div class="mb-3">
+            <label>Número de Habitantes</label>
+            <select class="form-control" name="" id="">
+
+            </select>
+            <input type="number" class="form-control" formControlName="numResidents" min="1">
+          </div>
+          <div class="mb-3">
+            <label>Uso</label>
+            <select class="form-control" formControlName="usage">
+              <option value="" disabled selected>Seleccione</option>
+              <option value="Residencial">Residencial</option>
+              <option value="Comercial">Comercial</option>
+              <option value="Mixto">Mixto</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+        <button class="btn btn-primary" (click)="editMode ? actualizarPropiedad() : agregarPropiedad()">
+          {{ editMode ? 'Actualizar' : 'Guardar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

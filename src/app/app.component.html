@@ -1,0 +1,86 @@
+<h1><a routerLink="/">HOME</a></h1>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm px-3">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#">
+      <!-- <img src="Captura.PNG" alt="KOHABITAR" height="40"> -->
+    </a>
+    <div class="ms-auto">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle">Usuario</button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+          <li><a class="dropdown-item" href="#">Perfil</a></li>
+          <li><a class="dropdown-item" href="#">Configuraciones</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-2 bg-dark text-white border-end min-vh-100 p-3">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-dark text-white">
+          <a routerLink="/usuarios" class="text-white text-decoration-none d-block">Gestion Usuarios</a>
+          <ul class="list-unstyled ps-3">
+            <li><a href="#" class="text-white text-decoration-none">xxxx</a></li>
+            <li><a href="#" class="text-white text-decoration-none">xxxx</a></li>
+          </ul>
+        </li>
+        <li class="list-group-item bg-dark text-white">
+          <a routerLink="/propiedades" class="text-white text-decoration-none d-block">Gestion Propiedades</a>
+          <ul class="list-unstyled ps-3">
+            <li><a href="#" class="text-white text-decoration-none">yyyy</a></li>
+            <li><a href="#" class="text-white text-decoration-none">yyyy</a></li>
+          </ul>
+        </li>
+        <li class="list-group-item bg-dark text-white">
+          <a href="#" class="text-white text-decoration-none d-block">Parqueaderos</a>
+          <ul class="list-unstyled ps-3">
+            <li><a href="#" class="text-white text-decoration-none">Nuevo Proyecto</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Proyectos Actuales</a></li>
+          </ul>
+        </li>
+        <li class="list-group-item bg-dark text-white">
+          <a href="#" class="text-white text-decoration-none d-block">Reservas</a>
+          <ul class="list-unstyled ps-3">
+            <li><a href="#" class="text-white text-decoration-none">Reportes</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Auditorías</a></li>
+          </ul>
+        </li>
+        <li class="list-group-item bg-dark text-white">
+          <a href="#" class="text-white text-decoration-none d-block">PQR</a>
+          <ul class="list-unstyled ps-3">
+            <li><a href="#" class="text-white text-decoration-none">xxxx</a></li>
+            <li><a href="#" class="text-white text-decoration-none">xxxxx</a></li>
+          </ul>
+        </li>
+        <li class="list-group-item bg-dark text-white">
+          <a href="#" class="text-white text-decoration-none d-block">Zonas comunes</a>
+          <ul class="list-unstyled ps-3">
+            <li><a href="#" class="text-white text-decoration-none">xxxxxx</a></li>
+            <li><a href="#" class="text-white text-decoration-none">xxxxxxx</a></li>
+          </ul>
+        </li>
+        <li class="list-group-item bg-dark text-white">
+          <a href="#" class="text-white text-decoration-none d-block">Notificaciones</a>
+          <ul class="list-unstyled ps-3">
+            <li><a href="#" class="text-white text-decoration-none">xxxxx</a></li>
+            <li><a href="#" class="text-white text-decoration-none">xxxxx</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="col-md-10 p-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

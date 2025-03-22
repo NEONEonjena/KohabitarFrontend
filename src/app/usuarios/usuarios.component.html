@@ -1,0 +1,87 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Usuarios</h2>
+  <button class="btn btn-primary mb-3" (click)="mostrarModal = true; editMode = false; usuarioForm.reset()">+ Agregar
+    Usuario</button>
+  <input type="text" class="form-control mb-3" placeholder="Buscar...">
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Nombre</th>
+        <th>Rol</th>
+        <th>Apartamento</th>
+        <th>Celular</th>
+        <th>Estado</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>
+          <strong>{{ usuario.name }}</strong><br>
+          {{ usuario.email }}
+        </td>
+        <td>{{ usuario.role }}</td>
+        <td>{{ usuario.apartment }}</td>
+        <td>{{ usuario.phone }}</td>
+        <td class="text-center">
+          <input type="checkbox" class="form-check-input" [checked]="usuario.active" disabled>
+        </td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="editarUsuario(usuario)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="eliminarUsuario(usuario.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal para Agregar/Editar Usuario -->
+<div *ngIf="mostrarModal" class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ editMode ? 'Editar Usuario' : 'Agregar Usuario' }}</h5>
+        <button type="button" class="btn-close" (click)="cerrarModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="usuarioForm">
+          <div class="mb-3">
+            <label>Nombre</label>
+            <input type="text" class="form-control" formControlName="name">
+          </div>
+          <div class="mb-3">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email">
+          </div>
+          <div class="mb-3">
+            <label>Rol</label>
+            <input type="text" class="form-control" formControlName="role">
+          </div>
+          <div class="mb-3">
+            <label>Apartamento</label>
+            <select class="form-control" formControlName="apartment">
+              <option *ngFor="let propiedad of propiedades" [value]="propiedad">
+                {{ propiedad }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Celular</label>
+            <input type="text" class="form-control" formControlName="phone">
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" formControlName="active">
+            <label class="form-check-label">Activo</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+        <button class="btn btn-primary" (click)="editMode ? actualizarUsuario() : agregarUsuario()">
+          {{ editMode ? 'Actualizar' : 'Guardar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
