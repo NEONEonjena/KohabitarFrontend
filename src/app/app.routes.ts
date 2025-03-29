@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsuarioComponent } from './usuarios/usuarios.component';
 import { PropiedadesComponent } from './propiedades/propiedades.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 
 export const routes: Routes = [
